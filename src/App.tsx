@@ -1,14 +1,32 @@
-import './App.css';
+import React, { useState } from 'react';
 import ImageGallery from './components/ImageGallery/ImageGallery';
+import FavouritesPage from './pages/FavouritesPage';
+import ProfilePage from './pages/ProfilePage';
+import Navbar from './components/Navbar/Navbar';
+import './App.css';
 
-function App() {
+const App: React.FC = () => {
+  const [currentView, setCurrentView] = useState<string>('gallery');
+
+  const renderView = () => {
+    switch (currentView) {
+      case 'gallery':
+        return <ImageGallery />;
+      case 'favourites':
+        return <FavouritesPage />;
+      case 'profile':
+        return <ProfilePage />;
+      default:
+        return <ImageGallery />;
+    }
+  };
+
   return (
-    <>
-      <div>
-        <ImageGallery />
-      </div>
-    </>
+    <div>
+      <Navbar setCurrentView={setCurrentView} />
+      {renderView()}
+    </div>
   );
-}
+};
 
 export default App;

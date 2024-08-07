@@ -1,0 +1,109 @@
+.card {
+  width: 100%;
+  max-width: 400px;
+  min-height: 200px;
+  max-height: 500px;
+  margin: 1rem auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 12px 14px rgba(74, 72, 72, 0.688);
+  position: relative;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  padding-top: 75%;
+  overflow: hidden;
+}
+
+.imageContainer img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.favouriteButton {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  border-radius: 50%;
+  padding: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.favouriteButton:hover {
+  background: rgba(0, 0, 0, 0);
+  box-shadow: skyblue 0px 0px 10px;
+}
+
+.favouriteIcon {
+  width: 24px;
+  height: 24px;
+  transition: filter 0.3s;
+}
+
+.filled {
+  filter: invert(39%) sepia(82%) saturate(4312%) hue-rotate(352deg)
+    brightness(98%) contrast(97%);
+}
+
+.cardContent {
+  padding: 1rem;
+  text-align: center;
+}
+
+.imageTitle {
+  margin: 0;
+  font-size: 1rem;
+  color: #aba7a7;
+}
+
+@media (min-width: 600px) {
+  .card {
+    max-width: 500px;
+    width: calc(50% - 1rem);
+  }
+
+  .favouriteButton {
+    padding: 0.75rem;
+  }
+
+  .favouriteIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .imageTitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card {
+    width: calc(25% - 1rem);
+  }
+
+  .favouriteButton {
+    padding: 1rem;
+  }
+
+  .favouriteIcon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .imageTitle {
+    font-size: 1.2rem;
+  }
+}
