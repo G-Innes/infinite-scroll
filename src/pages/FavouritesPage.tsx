@@ -1,5 +1,5 @@
 import React from 'react';
-import useFavourites from '../hooks/useFavourites';
+import { useFavourites } from '../context/FavouritesContext';
 import ImageList from '../components/ImageList/ImageList';
 
 const FavouritesPage: React.FC = () => {
