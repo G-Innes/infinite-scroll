@@ -12,13 +12,11 @@
 @media (min-width: 600px) {
   .imageGallery {
     padding: 2rem;
-    width: 80%;
   }
 }
 
 @media (min-width: 1024px) {
   .imageGallery {
     padding: 3rem;
-    width: 60%;
   }
 }

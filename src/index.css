@@ -1,11 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Lato', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgba(13, 1, 1, 0.87);
+  background-color: #f2f2f2; /* Light gray background */
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(27, 26, 26, 0.1) 0,
+    rgba(115, 115, 115, 0.1) 2px,
+    transparent 1px,
+    transparent 5px
+  );
+  color: #2c2c2c; /* Darker text for readability */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

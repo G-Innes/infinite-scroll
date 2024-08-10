@@ -13,8 +13,8 @@ export const fetchImagesByPage = async (
     format: 'json',
     nojsoncallback: '1',
     page: page.toString(),
-    per_page: '10',
-    text: 'animals',
+    per_page: '6',
+    text: 'vintage fashion',
   });
 
   const response = await fetch(`${BASE_URL}&${params.toString()}`);

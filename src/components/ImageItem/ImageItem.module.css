@@ -1,14 +1,42 @@
+@keyframes bounceSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(5px) scale(1);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.01);
+  }
+  80% {
+    transform: translateY(5px) scale(0.99);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
 .card {
   width: 100%;
-  max-width: 400px;
-  min-height: 200px;
-  max-height: 500px;
+  max-width: 600px;
+  min-height: 300px;
+  max-height: 600px;
   margin: 1rem auto;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 12px 14px rgba(74, 72, 72, 0.688);
+  box-shadow: 0 8px 14px rgba(0, 119, 130, 0.447);
   position: relative;
+  opacity: 0;
+  transform: translateY(
+    30px
+  ); /* Match the initial value of the bounce animation */
+  animation: bounceSlideIn 0.7s ease-out forwards; /* Adjusted timing for bounce */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.card.loaded {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .imageContainer {
@@ -16,6 +44,8 @@
   width: 100%;
   padding-top: 75%;
   overflow: hidden;
+  min-height: 200px;
+  min-width: 200px;
 }
 
 .imageContainer img {
@@ -27,6 +57,26 @@
   object-fit: cover;
 }
 
+.cardContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .cardContent {
+  opacity: 1;
+}
+
 .favouriteButton {
   position: absolute;
   bottom: 8px;
@@ -34,16 +84,17 @@
   background: rgba(0, 0, 0, 0);
   border: none;
   border-radius: 50%;
-  padding: 0.5rem;
+  padding: 2px;
   cursor: pointer;
   display: flex;
   align-items: center;
+  height: 42px;
+  width: 42px;
   justify-content: center;
   transition: background 0.3s;
 }
 
 .favouriteButton:hover {
-  background: rgba(0, 0, 0, 0);
   box-shadow: skyblue 0px 0px 10px;
 }
 
@@ -58,15 +109,16 @@
     brightness(98%) contrast(97%);
 }
 
-.cardContent {
-  padding: 1rem;
-  text-align: center;
-}
-
 .imageTitle {
   margin: 0;
-  font-size: 1rem;
-  color: #aba7a7;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: white;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid #ddd;
+  border-radius: 12px;
 }
 
 @media (min-width: 600px) {
@@ -85,13 +137,13 @@
   }
 
   .imageTitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 }
 
 @media (min-width: 1024px) {
   .card {
-    width: calc(25% - 1rem);
+    width: 300px;
   }
 
   .favouriteButton {
@@ -104,6 +156,6 @@
   }
 
   .imageTitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }
