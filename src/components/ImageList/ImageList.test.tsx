@@ -3,9 +3,13 @@ import { describe, it, expect, vi } from 'vitest';
 import ImageList from './ImageList';
 import { FlickrPhoto } from '../../types/flickr';
 
+interface ImageItemProps {
+  image: FlickrPhoto;
+}
+
 vi.mock('../ImageItem/ImageItem', () => ({
   __esModule: true,
-  default: (props: any) => (
+  default: (props: ImageItemProps) => (
     <div data-testid={`image-item-${props.image.id}`}>{props.image.title}</div>
   ),
 }));

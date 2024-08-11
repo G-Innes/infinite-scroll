@@ -3,9 +3,13 @@ import { describe, it, expect, vi } from 'vitest';
 import Navbar from './Navbar';
 import { View } from '../../types/navbar';
 
+interface NavbarProps {
+  setCurrentView: (view: View) => void;
+}
+
 vi.mock('./Navbar', () => ({
   __esModule: true,
-  default: (props: any) => (
+  default: (props: NavbarProps) => (
     <nav>
       <ul>
         <li>

@@ -4,6 +4,8 @@ import ImageItem from './ImageItem';
 import { useFavourites } from '../../context/FavouritesContext';
 import { FlickrPhoto } from '../../types/flickr';
 
+type Mock = ReturnType<typeof vi.fn>;
+
 vi.mock('../../context/FavouritesContext', () => ({
   useFavourites: vi.fn(),
 }));
@@ -18,7 +20,7 @@ describe('ImageItem', () => {
   };
 
   it('should render image and title', () => {
-    (useFavourites as vi.Mock).mockReturnValue({
+    (useFavourites as Mock).mockReturnValue({
       favourites: [],
       addFavourite: vi.fn(),
       removeFavourite: vi.fn(),
@@ -35,7 +37,7 @@ describe('ImageItem', () => {
 
   it('should call addFavourite when the image is not a favourite and button is clicked', () => {
     const addFavourite = vi.fn();
-    (useFavourites as vi.Mock).mockReturnValue({
+    (useFavourites as Mock).mockReturnValue({
       favourites: [],
       addFavourite,
       removeFavourite: vi.fn(),
@@ -50,7 +52,7 @@ describe('ImageItem', () => {
 
   it('should call removeFavourite when the image is a favourite and button is clicked', () => {
     const removeFavourite = vi.fn();
-    (useFavourites as vi.Mock).mockReturnValue({
+    (useFavourites as Mock).mockReturnValue({
       favourites: [mockImage],
       addFavourite: vi.fn(),
       removeFavourite,

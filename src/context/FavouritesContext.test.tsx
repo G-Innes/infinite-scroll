@@ -5,6 +5,8 @@ import { FlickrPhoto } from '../types/flickr';
 import { fetchImageById } from '../utils/flickrApi';
 import { useEffect } from 'react';
 
+type Mock = ReturnType<typeof vi.fn>;
+
 vi.mock('../utils/flickrApi', () => ({
   fetchImageById: vi.fn(),
 }));
@@ -24,7 +26,7 @@ describe('FavouritesProvider', () => {
     };
 
     localStorage.setItem('favourites', JSON.stringify(['1']));
-    (fetchImageById as vi.Mock).mockResolvedValueOnce(mockImage);
+    (fetchImageById as Mock).mockResolvedValueOnce(mockImage);
 
     const TestComponent = () => {
       const { favourites } = useFavourites();
@@ -49,7 +51,7 @@ describe('FavouritesProvider', () => {
       secret: 'secret2',
     };
 
-    (fetchImageById as vi.Mock).mockResolvedValueOnce(mockImage);
+    (fetchImageById as Mock).mockResolvedValueOnce(mockImage);
 
     const TestComponent = () => {
       const { addFavourite, favourites } = useFavourites();
@@ -83,7 +85,7 @@ describe('FavouritesProvider', () => {
     };
 
     localStorage.setItem('favourites', JSON.stringify(['3']));
-    (fetchImageById as vi.Mock).mockResolvedValueOnce(mockImage);
+    (fetchImageById as Mock).mockResolvedValueOnce(mockImage);
 
     const TestComponent = () => {
       const { removeFavourite, favourites } = useFavourites();

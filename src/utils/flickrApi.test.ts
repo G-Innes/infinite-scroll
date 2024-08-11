@@ -1,23 +1,17 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fetchImagesByPage, fetchImageById } from './flickrApi';
-import {
-  FlickrPhoto,
-  FlickrPhotosResponse,
-  FlickrPhotoInfoResponse,
-} from '../types/flickr';
+import { FlickrPhotosResponse, FlickrPhotoInfoResponse } from '../types/flickr';
 
-// Mock the global fetch function
 const mockFetch = vi.fn();
 global.fetch = mockFetch as any;
 
 describe('fetchFunctions', () => {
   afterEach(() => {
-    vi.clearAllMocks(); // Clear mocks after each test
+    vi.clearAllMocks();
   });
 
   describe('fetchImagesByPage', () => {
     it('should fetch images by page number and return formatted data', async () => {
-      // Mock response data
       const mockResponse: FlickrPhotosResponse = {
         photos: {
           photo: [
@@ -80,7 +74,6 @@ describe('fetchFunctions', () => {
 
   describe('fetchImageById', () => {
     it('should fetch image details by ID and return formatted data', async () => {
-      // Mock response data
       const mockResponse: FlickrPhotoInfoResponse = {
         photo: {
           id: '1',

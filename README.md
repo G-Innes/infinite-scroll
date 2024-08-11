@@ -1,30 +1,82 @@
-# React + TypeScript + Vite
+# Infinite Scroll App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This is an Infinite Scroll application built with React, TypeScript, and Vite. It uses the Flickr API to fetch images and allows users to favorite images for storage in local storage. The project draws inspiration from design files for a small application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Infinite Scroll**: Load and display images from Flickr as the user scrolls down.
+- **Image Favoriting**: Users can favorite images, and these favorites are stored in local storage.
+- **Modern Tech Stack**: Built using React, TypeScript, and Vite for a fast and efficient development experience.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Getting Started
 
-- Configure the top-level `parserOptions` property like this:
+### Prerequisites
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Installation
+
+1. Clone the Repository
+
+   git clone git@github.com:G-Innes/infinite-scroll.git
+   cd infinite-scroll
+
+2. Install Dependencies
+
+   npm install
+
+Development
+
+To start the development server and preview the application, run:
+npm run dev
+
+This will start the Vite development server and open the app in your default browser.
+Building
+
+To build the project for production, use:
+
+npm run build
+
+This command will compile TypeScript files and bundle the project using Vite.
+Preview
+
+To preview the built project locally, use:
+
+npm run preview
+
+Testing
+
+To run the tests, use:
+
+bash
+
+npm test
+
+This command runs Vitest to execute your unit tests.
+Testing Details
+
+    Unit Tests: Written using Vitest, a fast test runner for Vite projects.
+    Test Files: Located alongside the components they test, with the .test.tsx suffix.
+
+Configuration
+TypeScript
+
+The project uses TypeScript for type safety. TypeScript configuration is managed in tsconfig.json.
+Vite
+
+Vite is used for fast development and bundling. Vite configuration can be found in the vite.config.ts file.
+Vitest
+
+Vitest is used for testing. Configuration for Vitest is in the vitest.config.ts file.
+Dependencies
+
+    React: ^18.3.1
+    React DOM: ^18.3.1
+    Vite: ^5.3.4
+    Vitest: ^2.0.5
+    TypeScript: ^5.5.4
+    Prettier: ^3.3.3
+    ESLint: ^8.57.0
+    @testing-library/react: ^16.0.0
+    @testing-library/jest-dom: ^6.4.8

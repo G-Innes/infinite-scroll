@@ -4,6 +4,8 @@ import useFetchImages from './useFetchImages';
 import { fetchImagesByPage } from '../utils/flickrApi';
 import { FlickrPhoto } from '../types/flickr';
 
+type Mock = ReturnType<typeof vi.fn>;
+
 vi.mock('../utils/flickrApi', () => ({
   fetchImagesByPage: vi.fn(),
 }));
@@ -27,7 +29,7 @@ describe('useFetchImages', () => {
   ];
 
   it('should initially load with loading state', () => {
-    (fetchImagesByPage as vi.Mock).mockResolvedValue([]);
+    (fetchImagesByPage as Mock).mockResolvedValue([]);
 
     const { result } = renderHook(() => useFetchImages(1));
 
@@ -37,7 +39,7 @@ describe('useFetchImages', () => {
   });
 
   it('should fetch images and update state', async () => {
-    (fetchImagesByPage as vi.Mock).mockResolvedValue(mockImages);
+    (fetchImagesByPage as Mock).mockResolvedValue(mockImages);
 
     const { result } = renderHook(() => useFetchImages(1));
 
@@ -51,7 +53,7 @@ describe('useFetchImages', () => {
   });
 
   it('should handle errors during fetch', async () => {
-    (fetchImagesByPage as vi.Mock).mockRejectedValue(new Error('Fetch error'));
+    (fetchImagesByPage as Mock).mockRejectedValue(new Error('Fetch error'));
 
     const { result } = renderHook(() => useFetchImages(1));
 
@@ -76,7 +78,7 @@ describe('useFetchImages', () => {
       },
     ];
 
-    (fetchImagesByPage as vi.Mock).mockResolvedValue(imagesWithDuplicates);
+    (fetchImagesByPage as Mock).mockResolvedValue(imagesWithDuplicates);
 
     const { result } = renderHook(() => useFetchImages(1));
 

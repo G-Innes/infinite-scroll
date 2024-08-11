@@ -4,6 +4,8 @@ import { describe, it, expect, vi } from 'vitest';
 import ImageGallery from './ImageGallery';
 import useFetchImages from '../../hooks/useFetchImages';
 
+type Mock = ReturnType<typeof vi.fn>;
+
 vi.mock('../../hooks/useFetchImages');
 vi.mock('../../hooks/useInfiniteScroll');
 
@@ -28,7 +30,7 @@ vi.mock('../../types/error', () => ({
 
 describe('ImageGallery Component', () => {
   it('should render the ImageList component', () => {
-    (useFetchImages as unknown as vi.Mock).mockReturnValue({
+    (useFetchImages as unknown as Mock).mockReturnValue({
       images: [],
       loading: false,
       error: null,
@@ -40,7 +42,7 @@ describe('ImageGallery Component', () => {
   });
 
   it('should render the Loader component when loading', () => {
-    (useFetchImages as vi.Mock).mockReturnValue({
+    (useFetchImages as Mock).mockReturnValue({
       images: [],
       loading: true,
       error: null,
@@ -53,7 +55,7 @@ describe('ImageGallery Component', () => {
 
   it('should render the Error component when there is an error', () => {
     const error = { message: 'Test error message' };
-    (useFetchImages as unknown as vi.Mock).mockReturnValue({
+    (useFetchImages as unknown as Mock).mockReturnValue({
       images: [],
       loading: false,
       error,
