@@ -10,10 +10,11 @@ interface ImageItemProps {
 
 const ImageItem: React.FC<ImageItemProps> = ({ image }) => {
   const { favourites, addFavourite, removeFavourite } = useFavourites();
+  // Check if the image is in the favourites list
   const isFavourite = favourites.some((fav) => fav.id === image.id);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
-  const toggleFavourite = () => {
+  const toggleFavourite = (): void => {
     if (isFavourite) {
       removeFavourite(image.id);
     } else {
@@ -21,7 +22,7 @@ const ImageItem: React.FC<ImageItemProps> = ({ image }) => {
     }
   };
 
-  const handleImageLoad = () => {
+  const handleImageLoad = (): void => {
     setIsLoaded(true);
   };
 
