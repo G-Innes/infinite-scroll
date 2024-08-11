@@ -20,7 +20,7 @@ const ImageGallery: React.FC = () => {
     <div className={styles.imageGallery}>
       <ImageList images={images} />
       {loading && <Loader />}
-      {error && <Error message={error} />}
+      {error && <Error error={error} />}
     </div>
   );
 };

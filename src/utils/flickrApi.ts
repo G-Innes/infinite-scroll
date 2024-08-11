@@ -1,8 +1,11 @@
-import { FlickrPhoto, FlickrPhotosResponse, FlickrPhotoInfoResponse } from '../types/flickr';
+import {
+  FlickrPhoto,
+  FlickrPhotosResponse,
+  FlickrPhotoInfoResponse,
+} from '../types/flickr';
 
 const API_KEY = import.meta.env.VITE_FLICKR_API_KEY as string;
-const BASE_URL =
-  'https://www.flickr.com/services/rest/';
+const BASE_URL = 'https://www.flickr.com/services/rest/';
 
 // Function for fetching data from Flickr API
 // Generic used to allow for different return types

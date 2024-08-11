@@ -9,7 +9,7 @@ html {
   line-height: 1.5;
   font-weight: 400;
   color: rgba(13, 1, 1, 0.87);
-  background-color: #f2f2f2; /* Light gray background */
+  background-color: #f2f2f2;
   background-image: repeating-linear-gradient(
     45deg,
     rgba(27, 26, 26, 0.1) 0,
@@ -17,7 +17,7 @@ html {
     transparent 1px,
     transparent 5px
   );
-  color: #2c2c2c; /* Darker text for readability */
+  color: #2c2c2c;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

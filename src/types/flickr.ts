@@ -24,5 +24,5 @@ export interface FlickrPhotoInfoResponse {
     };
     server: string;
     secret: string;
-  };
+  } | null;
 }
