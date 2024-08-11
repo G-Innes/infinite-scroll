@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { FlickrPhoto } from '../types/flickr';
+import { isError } from '../types/error';
 import { fetchImagesByPage } from '../utils/flickrApi';
 
 // Helper function to remove duplicate images by ID
@@ -9,9 +10,6 @@ const removeDuplicateImages = (images: FlickrPhoto[]): FlickrPhoto[] => {
   );
   return uniqueImages;
 };
-
-// Type guard to check if an error is an instance of Error
-const isError = (error: unknown): error is Error => error instanceof Error;
 
 // Custom hook to fetch images from Flickr API
 const useFetchImages = (page: number) => {

@@ -1,6 +1,6 @@
 import { FlickrPhoto } from './flickr';
 
- // Type for favourites context
+// Type for favourites context
 export interface FavouritesContextType {
   favourites: FlickrPhoto[];
   addFavourite: (id: string) => Promise<void>;

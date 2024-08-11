@@ -6,8 +6,12 @@ import React, {
   ReactNode,
 } from 'react';
 import { FlickrPhoto } from '../types/flickr';
+import { isError } from '../types/error';
 import { FavouritesContextType } from '../types/favourites';
 import { fetchImageById } from '../utils/flickrApi';
+import { useCallback } from 'react';
+
+const LOCAL_STORAGE_KEY = 'favourites';
 
 // Create context for favourites with initial value of undefined
 const FavouritesContext = createContext<FavouritesContextType | undefined>(
@@ -22,47 +26,68 @@ export const FavouritesProvider: React.FC<{ children: ReactNode }> = ({
 
   // Load favourites from local storage on mount
   useEffect(() => {
-    const loadFavourites = async () => {
-      const savedFavourites = JSON.parse(
-        localStorage.getItem('favourites') || '[]',
-      );
-      if (savedFavourites.length > 0) {
-        const fetchedImages = await Promise.all(
-          savedFavourites.map((id: string) => fetchImageById(id)),
+    const loadFavourites = async (): Promise<void> => {
+      try {
+        const savedFavourites: string[] = JSON.parse(
+          localStorage.getItem(LOCAL_STORAGE_KEY) || '[]',
         );
-        setFavourites(fetchedImages);
+        if (savedFavourites.length > 0) {
+          const fetchedImages = await Promise.all(
+            savedFavourites.map((id: string) => fetchImageById(id)),
+          );
+          setFavourites(fetchedImages);
+        }
+      } catch (error: unknown) {
+        console.error(
+          'Error loading favourites from local storage',
+          isError(error) ? error.message : 'An unknown error occurred',
+        );
       }
     };
     loadFavourites();
   }, []);
 
   // Add a favourite image by ID
-  const addFavourite = async (id: string) => {
-    const image = await fetchImageById(id);
-    setFavourites((prevFavourites) => {
-      if (prevFavourites.some((fav) => fav.id === id)) {
-        return prevFavourites;
-      }
-      const newFavourites = [...prevFavourites, image];
-      localStorage.setItem(
-        'favourites',
-        JSON.stringify(newFavourites.map((img) => img.id)),
+  const addFavourite = useCallback(async (id: string) => {
+    try {
+      const image = await fetchImageById(id);
+      setFavourites((prevFavourites) => {
+        if (prevFavourites.some((fav) => fav.id === id)) {
+          return prevFavourites;
+        }
+        const newFavourites = [...prevFavourites, image];
+        localStorage.setItem(
+          'favourites',
+          JSON.stringify(newFavourites.map((img) => img.id)),
+        );
+        return newFavourites;
+      });
+    } catch (error: unknown) {
+      console.error(
+        'Error loading favourites from local storage',
+        isError(error) ? error.message : 'An unknown error occurred',
       );
-      return newFavourites;
-    });
-  };
+    }
+  }, []);
 
   // Remove a favourite image by ID
-  const removeFavourite = (id: string) => {
-    setFavourites((prevFavourites) => {
-      const newFavourites = prevFavourites.filter((fav) => fav.id !== id);
-      localStorage.setItem(
-        'favourites',
-        JSON.stringify(newFavourites.map((img) => img.id)),
+  const removeFavourite = useCallback((id: string) => {
+    try {
+      setFavourites((prevFavourites) => {
+        const newFavourites = prevFavourites.filter((fav) => fav.id !== id);
+        localStorage.setItem(
+          'favourites',
+          JSON.stringify(newFavourites.map((img) => img.id)),
+        );
+        return newFavourites;
+      });
+    } catch (error: unknown) {
+      console.error(
+        'Error loading favourites from local storage',
+        isError(error) ? error.message : 'An unknown error occurred',
       );
-      return newFavourites;
-    });
-  };
+    }
+  }, []);
 
   // Provide the context value to the app
   return (
