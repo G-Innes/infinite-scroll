@@ -6,23 +6,21 @@ import React, {
   ReactNode,
 } from 'react';
 import { FlickrPhoto } from '../types/flickr';
+import { FavouritesContextType } from '../types/favourites';
 import { fetchImageById } from '../utils/flickrApi';
 
-interface FavouritesContextType {
-  favourites: FlickrPhoto[];
-  addFavourite: (id: string) => Promise<void>;
-  removeFavourite: (id: string) => void;
-}
-
+// Create context for favourites with initial value of undefined
 const FavouritesContext = createContext<FavouritesContextType | undefined>(
   undefined,
 );
 
+// FavouritesProvider component to wrap the app with
 export const FavouritesProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [favourites, setFavourites] = useState<FlickrPhoto[]>([]);
 
+  // Load favourites from local storage on mount
   useEffect(() => {
     const loadFavourites = async () => {
       const savedFavourites = JSON.parse(
@@ -38,6 +36,7 @@ export const FavouritesProvider: React.FC<{ children: ReactNode }> = ({
     loadFavourites();
   }, []);
 
+  // Add a favourite image by ID
   const addFavourite = async (id: string) => {
     const image = await fetchImageById(id);
     setFavourites((prevFavourites) => {
@@ -53,6 +52,7 @@ export const FavouritesProvider: React.FC<{ children: ReactNode }> = ({
     });
   };
 
+  // Remove a favourite image by ID
   const removeFavourite = (id: string) => {
     setFavourites((prevFavourites) => {
       const newFavourites = prevFavourites.filter((fav) => fav.id !== id);
@@ -64,6 +64,7 @@ export const FavouritesProvider: React.FC<{ children: ReactNode }> = ({
     });
   };
 
+  // Provide the context value to the app
   return (
     <FavouritesContext.Provider
       value={{ favourites, addFavourite, removeFavourite }}
@@ -73,6 +74,7 @@ export const FavouritesProvider: React.FC<{ children: ReactNode }> = ({
   );
 };
 
+// Custom hook to use the favourites context
 export const useFavourites = () => {
   const context = useContext(FavouritesContext);
   if (!context) {
