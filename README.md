@@ -17,14 +17,16 @@ This is an Infinite Scroll application built with React, TypeScript, and Vite. I
 
 ### Installation
 
-1. Clone the Repository
+Clone the Repository
 
    git clone git@github.com:G-Innes/infinite-scroll.git
    cd infinite-scroll
 
-2. Install Dependencies
+Install Dependencies
 
    npm install
+
+Use the .env.example to enter your flickr API key and secret
 
 Development
 
