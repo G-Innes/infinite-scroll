@@ -12,66 +12,69 @@ This is an Infinite Scroll application built with React, TypeScript, and Vite. I
 
 ## Getting Started
 
-### Prerequisites
-
-
 ### Installation
 
-Clone the Repository
+### Clone the Repository
 
-   git clone git@github.com:G-Innes/infinite-scroll.git
-   cd infinite-scroll
+git clone git@github.com:G-Innes/infinite-scroll.git
+cd infinite-scroll
 
-Install Dependencies
+### Install Dependencies
 
-   npm install
+npm install
 
-Use the .env.example to enter your flickr API key and secret
+### Set up .ENV file
 
-Development
+Use the .env.example to enter your flickr API key and secret and remove the '.example' part
+
+### Development
 
 To start the development server and preview the application, run:
 npm run dev
 
 This will start the Vite development server and open the app in your default browser.
-Building
+
+### Building
 
 To build the project for production, use:
 
 npm run build
 
 This command will compile TypeScript files and bundle the project using Vite.
-Preview
+
+### Preview
 
 To preview the built project locally, use:
 
 npm run preview
 
-Testing
+### Testing
 
 To run the tests, use:
-
-bash
 
 npm test
 
 This command runs Vitest to execute your unit tests.
 Testing Details
 
-    Unit Tests: Written using Vitest, a fast test runner for Vite projects.
-    Test Files: Located alongside the components they test, with the .test.tsx suffix.
+    Unit Tests: Written using Vitest
+    Test Files: Located alongside the components they test
 
-Configuration
+### Configuration
+
 TypeScript
 
 The project uses TypeScript for type safety. TypeScript configuration is managed in tsconfig.json.
+
 Vite
 
 Vite is used for fast development and bundling. Vite configuration can be found in the vite.config.ts file.
+
 Vitest
 
 Vitest is used for testing. Configuration for Vitest is in the vitest.config.ts file.
-Dependencies
+
+### Dependencies
 
     React: ^18.3.1
     React DOM: ^18.3.1
