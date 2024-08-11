@@ -6,12 +6,12 @@ import { isError } from '../../types/error';
 
 vi.mock('./Error.module.css', () => ({
   default: {
-    error: 'error'
-  }
+    error: 'error',
+  },
 }));
 
 vi.mock('../../types/error', () => ({
-  isError: vi.fn()
+  isError: vi.fn(),
 }));
 
 describe('Error Component', () => {

@@ -5,7 +5,7 @@ import { useFavourites } from '../../context/FavouritesContext';
 import { FlickrPhoto } from '../../types/flickr';
 
 vi.mock('../../context/FavouritesContext', () => ({
-  useFavourites: vi.fn()
+  useFavourites: vi.fn(),
 }));
 
 describe('ImageItem', () => {
@@ -14,19 +14,22 @@ describe('ImageItem', () => {
     title: 'Sample Image',
     src: 'http://example.com/image.jpg',
     server: 'server',
-    secret: 'secret'
+    secret: 'secret',
   };
 
   it('should render image and title', () => {
     (useFavourites as vi.Mock).mockReturnValue({
       favourites: [],
       addFavourite: vi.fn(),
-      removeFavourite: vi.fn()
+      removeFavourite: vi.fn(),
     });
 
     render(<ImageItem image={mockImage} />);
 
-    expect(screen.getByAltText('Sample Image')).toHaveAttribute('src', 'http://example.com/image.jpg');
+    expect(screen.getByAltText('Sample Image')).toHaveAttribute(
+      'src',
+      'http://example.com/image.jpg',
+    );
     expect(screen.getByText('Sample Image')).toBeInTheDocument();
   });
 
@@ -35,7 +38,7 @@ describe('ImageItem', () => {
     (useFavourites as vi.Mock).mockReturnValue({
       favourites: [],
       addFavourite,
-      removeFavourite: vi.fn()
+      removeFavourite: vi.fn(),
     });
 
     render(<ImageItem image={mockImage} />);
@@ -50,7 +53,7 @@ describe('ImageItem', () => {
     (useFavourites as vi.Mock).mockReturnValue({
       favourites: [mockImage],
       addFavourite: vi.fn(),
-      removeFavourite
+      removeFavourite,
     });
 
     render(<ImageItem image={mockImage} />);

@@ -10,8 +10,20 @@ vi.mock('../utils/flickrApi', () => ({
 
 describe('useFetchImages', () => {
   const mockImages: FlickrPhoto[] = [
-    { id: '1', title: 'Image 1', src: 'http://example.com/image1.jpg', server: 'server1', secret: 'secret1' },
-    { id: '2', title: 'Image 2', src: 'http://example.com/image2.jpg', server: 'server2', secret: 'secret2' }
+    {
+      id: '1',
+      title: 'Image 1',
+      src: 'http://example.com/image1.jpg',
+      server: 'server1',
+      secret: 'secret1',
+    },
+    {
+      id: '2',
+      title: 'Image 2',
+      src: 'http://example.com/image2.jpg',
+      server: 'server2',
+      secret: 'secret2',
+    },
   ];
 
   it('should initially load with loading state', () => {
@@ -55,7 +67,13 @@ describe('useFetchImages', () => {
   it('should remove duplicate images', async () => {
     const imagesWithDuplicates: FlickrPhoto[] = [
       ...mockImages,
-      { id: '1', title: 'Image 1', src: 'http://example.com/image1.jpg', server: 'server1', secret: 'secret1' },
+      {
+        id: '1',
+        title: 'Image 1',
+        src: 'http://example.com/image1.jpg',
+        server: 'server1',
+        secret: 'secret1',
+      },
     ];
 
     (fetchImagesByPage as vi.Mock).mockResolvedValue(imagesWithDuplicates);

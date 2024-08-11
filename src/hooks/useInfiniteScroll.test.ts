@@ -6,7 +6,10 @@ describe('useInfiniteScroll', () => {
   it('should call callback when scrolled to the bottom of the page', () => {
     const callback = vi.fn();
 
-    const originalOffsetHeight = Object.getOwnPropertyDescriptor(document.documentElement, 'offsetHeight')?.get;
+    const originalOffsetHeight = Object.getOwnPropertyDescriptor(
+      document.documentElement,
+      'offsetHeight',
+    )?.get;
 
     Object.defineProperty(document.documentElement, 'offsetHeight', {
       configurable: true,
@@ -32,7 +35,10 @@ describe('useInfiniteScroll', () => {
   it('should not call callback when scrolled but not at the bottom', () => {
     const callback = vi.fn();
 
-    const originalOffsetHeight = Object.getOwnPropertyDescriptor(document.documentElement, 'offsetHeight')?.get;
+    const originalOffsetHeight = Object.getOwnPropertyDescriptor(
+      document.documentElement,
+      'offsetHeight',
+    )?.get;
 
     Object.defineProperty(document.documentElement, 'offsetHeight', {
       configurable: true,

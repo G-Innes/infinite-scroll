@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import FavouritesPage from './pages/FavouritesPage';
-import ProfilePage from './pages/ProfilePage';
 import Navbar from './components/Navbar/Navbar';
 import './App.css';
 
@@ -14,8 +13,6 @@ const App: React.FC = () => {
         return <ImageGallery />;
       case 'favourites':
         return <FavouritesPage />;
-      case 'profile':
-        return <ProfilePage />;
       default:
         return <ImageGallery />;
     }

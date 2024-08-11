@@ -5,6 +5,7 @@ import ImageList from '../ImageList/ImageList';
 import Loader from '../Loader/Loader';
 import Error from '../Error/Error';
 import styles from './ImageGallery.module.css';
+import TextCard from '../TextCard/TextCard';
 
 const ImageGallery: React.FC = () => {
   const [page, setPage] = useState<number>(1);
@@ -18,6 +19,7 @@ const ImageGallery: React.FC = () => {
 
   return (
     <div className={styles.imageGallery}>
+      <TextCard title="Welcome to iScroll" />
       <ImageList images={images} />
       {loading && <Loader />}
       {error && <Error error={error} />}

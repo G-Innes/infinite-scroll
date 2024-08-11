@@ -8,25 +8,31 @@ vi.mock('../../hooks/useFetchImages');
 vi.mock('../../hooks/useInfiniteScroll');
 
 vi.mock('../ImageList/ImageList', () => ({
-  default: () => <div data-testid="mock-image-list" />
+  default: () => <div data-testid="mock-image-list" />,
 }));
 
 vi.mock('../Loader/Loader', () => ({
-  default: () => <div data-testid="mock-loader" />
+  default: () => <div data-testid="mock-loader" />,
 }));
 
 vi.mock('../Error/Error', () => ({
-  default: ({ error }: { error: Error }) => <div data-testid="mock-error">{error.message}</div>
+  default: ({ error }: { error: Error }) => (
+    <div data-testid="mock-error">{error.message}</div>
+  ),
 }));
 
 // Mock the isError function
 vi.mock('../../types/error', () => ({
-    isError: vi.fn()
-  }));
+  isError: vi.fn(),
+}));
 
 describe('ImageGallery Component', () => {
   it('should render the ImageList component', () => {
-    (useFetchImages as unknown as vi.Mock).mockReturnValue({ images: [], loading: false, error: null });
+    (useFetchImages as unknown as vi.Mock).mockReturnValue({
+      images: [],
+      loading: false,
+      error: null,
+    });
 
     render(<ImageGallery />);
 
@@ -34,7 +40,11 @@ describe('ImageGallery Component', () => {
   });
 
   it('should render the Loader component when loading', () => {
-    (useFetchImages as vi.Mock).mockReturnValue({ images: [], loading: true, error: null });
+    (useFetchImages as vi.Mock).mockReturnValue({
+      images: [],
+      loading: true,
+      error: null,
+    });
 
     render(<ImageGallery />);
 
@@ -42,12 +52,17 @@ describe('ImageGallery Component', () => {
   });
 
   it('should render the Error component when there is an error', () => {
-    const error = {message: 'Test error message'};
-    (useFetchImages as unknown as vi.Mock).mockReturnValue({ images: [], loading: false, error });
+    const error = { message: 'Test error message' };
+    (useFetchImages as unknown as vi.Mock).mockReturnValue({
+      images: [],
+      loading: false,
+      error,
+    });
 
     render(<ImageGallery />);
 
-    expect(screen.getByTestId('mock-error')).toHaveTextContent('Test error message');
+    expect(screen.getByTestId('mock-error')).toHaveTextContent(
+      'Test error message',
+    );
   });
-
 });

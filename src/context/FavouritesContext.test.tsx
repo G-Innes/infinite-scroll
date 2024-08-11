@@ -34,7 +34,7 @@ describe('FavouritesProvider', () => {
     render(
       <FavouritesProvider>
         <TestComponent />
-      </FavouritesProvider>
+      </FavouritesProvider>,
     );
 
     expect(await screen.findByText('1')).toBeInTheDocument();
@@ -48,28 +48,28 @@ describe('FavouritesProvider', () => {
       server: 'server2',
       secret: 'secret2',
     };
-  
+
     (fetchImageById as vi.Mock).mockResolvedValueOnce(mockImage);
-  
+
     const TestComponent = () => {
       const { addFavourite, favourites } = useFavourites();
-  
+
       useEffect(() => {
         const add = async () => {
           await addFavourite('2');
         };
         add();
       }, [addFavourite]);
-  
+
       return <div>{favourites.length}</div>;
     };
-  
+
     render(
       <FavouritesProvider>
         <TestComponent />
-      </FavouritesProvider>
+      </FavouritesProvider>,
     );
-  
+
     expect(await screen.findByText('1')).toBeInTheDocument();
   });
 
@@ -98,7 +98,7 @@ describe('FavouritesProvider', () => {
     render(
       <FavouritesProvider>
         <TestComponent />
-      </FavouritesProvider>
+      </FavouritesProvider>,
     );
 
     expect(await screen.findByText('0')).toBeInTheDocument();

@@ -7,7 +7,9 @@ interface ErrorProps {
 }
 
 const Error: React.FC<ErrorProps> = ({ error }) => {
-  const errorMessage = isError(error) ? error.message : 'An unknown error occurred';
+  const errorMessage = isError(error)
+    ? error.message
+    : 'An unknown error occurred';
   return <p className={styles.error}>Error: {errorMessage}</p>;
 };
 
