@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import useFetchImages from '../../hooks/useFetchImages';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import ImageList from '../ImageList/ImageList';
@@ -7,10 +7,14 @@ import Error from '../Error/Error';
 import styles from './ImageGallery.module.css';
 
 const ImageGallery: React.FC = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number>(1);
   const { images, loading, error } = useFetchImages(page);
 
-  useInfiniteScroll(() => setPage((prevPage) => prevPage + 1));
+  const loadMoreImages = useCallback(() => {
+    setPage((prevPage) => prevPage + 1);
+  }, []);
+
+  useInfiniteScroll(loadMoreImages);
 
   return (
     <div className={styles.imageGallery}>
